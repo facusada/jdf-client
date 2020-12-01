@@ -1,10 +1,8 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, BrowserRouter } from 'react-router-dom';
 
 import './App.css';
 import {connect} from 'react-redux';
-import { UIRouter, UIView, pushStateLocationPlugin} from '@uirouter/react';
-import states from './routes/routes'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { CssBaseline } from '@material-ui/core';
 import { esES } from '@material-ui/core/locale';
@@ -16,12 +14,7 @@ import Home from './components/home/Home';
 import Customers from './components/customers/Customers';
 import Orders from './components/orders/Orders'
 
-const plugins = [
-  pushStateLocationPlugin
-];
-
 function App() {
-
 
     const theme = createMuiTheme({
       palette: {
@@ -31,24 +24,20 @@ function App() {
     }, esES);
 
   return (
-    <UIRouter plugins={plugins} states={states}>
       <CssBaseline>
         <ThemeProvider theme={theme}>
           {/* <UIView /> */}
-          <Route exact path="/" component={Login} />
-          <Route path="/home/" component={Navbar} />
-          <Route path="/home/" component={Sidebar} />
-          <Route exact path="/home" component={Home} /> 
-          <Route exact path="/home/tools" component={Tools} />
-          <Route exact path="/home/customers" component={Customers} />
-          <Route exact path="/home/orders" component={Orders} />
-
-
-
-
+          <BrowserRouter>
+              <Route exact path="/" component={Login} />
+              <Route path="/home/" component={Navbar} />
+              <Route path="/home/" component={Sidebar} />
+              <Route exact path="/home" component={Home} /> 
+              <Route exact path="/home/tools" component={Tools} />
+              <Route exact path="/home/customers" component={Customers} />
+              <Route exact path="/home/orders" component={Orders} />
+          </BrowserRouter>
         </ThemeProvider>
       </CssBaseline>
-    </UIRouter>
   );
 }
 

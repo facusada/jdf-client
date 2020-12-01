@@ -27,6 +27,8 @@ export const UPDATE_STOCK = "UPDATE_STOCK";
 export const UPDATE_ORDER = "UPDATE_ORDER";
 export const DELETE_ORDER = "UPDATE_ORDER";
 
+const API_URL = process.env.REACT_APP_API_URL
+
 
 // export function infoMovie (apiKey, ciudad ) {
 //     return function(dispatch) {
@@ -44,7 +46,7 @@ export const DELETE_ORDER = "UPDATE_ORDER";
 
 export function cargardb () {
   return function(dispatch) {
-    return axios.post(`https://jdf-app.herokuapp.com/registerhd`, { withCredentials: true })
+    return axios.post(`${API_URL}/registerhd`, { withCredentials: true })
       .then(result => result.data)
       .then(data => {
         dispatch({
@@ -58,7 +60,7 @@ export function cargardb () {
 
 export function getClient() {
   return function(dispatch) {
-    return axios.get(`https://jdf-app.herokuapp.com/clients`, { withCredentials: true })
+    return axios.get(`${API_URL}/clients`, { withCredentials: true })
     .then(result => result.data)
     .then(data => {
       dispatch({
@@ -72,7 +74,7 @@ export function getClient() {
 
 export function getAllTools() {
   return function(dispatch) {
-    return axios.get(`https://jdf-app.herokuapp.com/tools`, { withCredentials: true })
+    return axios.get(`${API_URL}/tools`, { withCredentials: true })
     .then(result => result.data)
     .then(data => {
       dispatch({
@@ -86,7 +88,7 @@ export function getAllTools() {
 
 export function getAllCategory() {
   return function(dispatch) {
-    return axios.get(`https://jdf-app.herokuapp.com/category`, { withCredentials: true })
+    return axios.get(`${API_URL}/category`, { withCredentials: true })
     .then(result => result.data)
     .then(data => {
       dispatch({
@@ -100,7 +102,7 @@ export function getAllCategory() {
 
 export function getTool() {
   return function(dispatch) {
-    return axios.get(`https://jdf-app.herokuapp.com/tools/:id`, { withCredentials: true })
+    return axios.get(`${API_URL}/tools/:id`, { withCredentials: true })
     .then(result => result.data)
     .then(data => {
       dispatch({
@@ -115,7 +117,7 @@ export function getTool() {
 export function insertCategory(category) {
   console.log('EL insert llega ', category)
   return function(dispatch) {
-    return axios.post(`https://jdf-app.herokuapp.com/tools/insertCategory`,category, { withCredentials: true })
+    return axios.post(`${API_URL}/tools/insertCategory`,category, { withCredentials: true })
       .then(result => result.data)
       .then(data => {
         dispatch({
@@ -130,7 +132,7 @@ export function insertCategory(category) {
 export function login(login) {
   console.log("Los datos del login", login)
   return function(dispatch) {
-    return axios.post(`https://jdf-app.herokuapp.com/login`, login, { withCredentials: true })
+    return axios.post(`${API_URL}/login`, login, { withCredentials: true })
     .then(result => result.data)
     .then(data => {
       dispatch({
@@ -154,7 +156,7 @@ export function logintrue() {
 
 export function loginUserCookie(){
   return function(dispatch){
-    return axios.get("https://jdf-app.herokuapp.com/login", { withCredentials: true })
+    return axios.get("${API_URL}/login", { withCredentials: true })
     .then(result => result.data)
     .then(data => {
       dispatch({
@@ -166,7 +168,7 @@ export function loginUserCookie(){
 }
 
 export function userLogout () {
-  axios.get('https://jdf-app.herokuapp.com/logout', { withCredentials: true })
+  axios.get('${API_URL}/logout', { withCredentials: true })
   return {
     type: USER_LOGOUT
   }
@@ -176,7 +178,7 @@ export function userLogout () {
 export function insertTools(tools) {
   console.log('EL insertTOOLS llega', tools)
   return function(dispatch) {
-  return axios.post(`https://jdf-app.herokuapp.com/tools/insertTools`, tools, { withCredentials: true })
+  return axios.post(`${API_URL}/tools/insertTools`, tools, { withCredentials: true })
     .then(result => result.data)
     .then(data => {
       dispatch({
@@ -192,7 +194,7 @@ export function insertClient(client) {
   console.log("El insertClient llega", client)
 
   return function(dispatch) {
-  return axios.post(`https://jdf-app.herokuapp.com/clients/addClient`, client, { withCredentials: true })
+  return axios.post(`${API_URL}/clients/addClient`, client, { withCredentials: true })
     .then(result => result.data)
     .then(data => {
       dispatch({
@@ -206,7 +208,7 @@ export function insertClient(client) {
 export function updateTools(tool) {
   //console.log("El UPDATE_TOOLS llega", date)
   return function(dispatch) {
-  return axios.put(`https://jdf-app.herokuapp.com/tools/update/${tool.id}`, tool, { withCredentials: true })
+  return axios.put(`${API_URL}/tools/update/${tool.id}`, tool, { withCredentials: true })
     .then(result => result.data)
     .then(data => {
       dispatch({
@@ -221,7 +223,7 @@ export function updateTools(tool) {
 export function updateClient(client) {
 console.log("El updateClient llega", client)
   return function(dispatch) {
-  return axios.put(`https://jdf-app.herokuapp.com/clients/updateClient/${client.id}`, client, { withCredentials: true })
+  return axios.put(`${API_URL}/clients/updateClient/${client.id}`, client, { withCredentials: true })
     .then(result => result.data)
     .then(data => {
       dispatch({
@@ -236,7 +238,7 @@ console.log("El updateClient llega", client)
 export function deleteClient(id) {
   console.log("El deleteClient ID llega", id)
   return function(dispatch) {
-  return axios.delete(`https://jdf-app.herokuapp.com/clients/delete/${id}`, { withCredentials: true })
+  return axios.delete(`${API_URL}/clients/delete/${id}`, { withCredentials: true })
     .then(result => result.data)
     .then(data => {
       dispatch({
@@ -252,7 +254,7 @@ export function deleteTools(id) {
   console.log("el id en actions ", id)
   return function (dispatch) {
     return axios
-      .delete(`https://jdf-app.herokuapp.com/tools/delete/${id}`, { withCredentials: true })
+      .delete(`${API_URL}/tools/delete/${id}`, { withCredentials: true })
       .then(res => res.data)
       .then(data => {
         dispatch({
@@ -266,7 +268,7 @@ export function deleteTools(id) {
 export function order(order) {
   console.log("Order tiene ", order)
   return function (dispatch) {
-    return axios.post(`https://jdf-app.herokuapp.com/orders`, order, { withCredentials: true })
+    return axios.post(`${API_URL}/orders`, order, { withCredentials: true })
       .then(res => res.data)
       .then(data => {
         dispatch({
@@ -281,7 +283,7 @@ export function order(order) {
 export function allOrder() {
   console.log("Order ALL_ORDER ", order)
   return function (dispatch) {
-    return axios.get(`https://jdf-app.herokuapp.com/orders`, { withCredentials: true })
+    return axios.get(`${API_URL}/orders`, { withCredentials: true })
       .then(res => res.data)
       .then(data => {
         dispatch({
@@ -295,7 +297,7 @@ export function allOrder() {
 export function clientOrder(clientIdOrder) {
   console.log("llega clientIdOrder ", clientIdOrder)
   return function (dispatch) {
-    return axios.get(`https://jdf-app.herokuapp.com/orders/${clientIdOrder}`, { withCredentials: true })
+    return axios.get(`${API_URL}/orders/${clientIdOrder}`, { withCredentials: true })
       .then(res => res.data)
       .then(data => {
         dispatch({
@@ -310,7 +312,7 @@ export function clientOrder(clientIdOrder) {
 export function toolsOrder(toolsOrder) {
   console.log("llega toolsOrder ", toolsOrder)
   return function (dispatch) {
-    return axios.get(`https://jdf-app.herokuapp.com/orders/tool/${toolsOrder}`, { withCredentials: true })
+    return axios.get(`${API_URL}/orders/tool/${toolsOrder}`, { withCredentials: true })
       .then(res => res.data)
       .then(data => {
         dispatch({
@@ -326,7 +328,7 @@ export function updateStock(cantidad, id) {
   //console.log("El UPDATE_TOOLS llega", date)
   let stock= {stock: cantidad}
   return function(dispatch) {
-  return axios.put(`https://jdf-app.herokuapp.com/tools/update/${id}`, stock, { withCredentials: true })
+  return axios.put(`${API_URL}/tools/update/${id}`, stock, { withCredentials: true })
     .then(result => result.data)
     .then(data => {
       dispatch({
@@ -340,7 +342,7 @@ export function updateStock(cantidad, id) {
 
 export function updateOrder(body) {
     return function(dispatch) {
-    return axios.put(`https://jdf-app.herokuapp.com/orders/update/`, body, { withCredentials: true })
+    return axios.put(`${API_URL}/orders/update/`, body, { withCredentials: true })
       .then(result => result.data)
       .then(data => {
         dispatch({
@@ -352,7 +354,7 @@ export function updateOrder(body) {
 
   export function deleteOrder(id) {
     return function(dispatch) {
-    return axios.delete(`https://jdf-app.herokuapp.com/orders/delete/${id}`, { withCredentials: true })
+    return axios.delete(`${API_URL}/orders/delete/${id}`, { withCredentials: true })
       .then(result => result.data)
       .then(data => {
         dispatch({
