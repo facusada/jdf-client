@@ -156,7 +156,7 @@ export function logintrue() {
 
 export function loginUserCookie(){
   return function(dispatch){
-    return axios.get("${API_URL}/login", { withCredentials: true })
+    return axios.get(`${API_URL}/login`, { withCredentials: true })
     .then(result => result.data)
     .then(data => {
       dispatch({
@@ -168,7 +168,7 @@ export function loginUserCookie(){
 }
 
 export function userLogout () {
-  axios.get('${API_URL}/logout', { withCredentials: true })
+  axios.get(`${API_URL}/logout`, { withCredentials: true })
   return {
     type: USER_LOGOUT
   }

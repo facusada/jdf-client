@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, BrowserRouter, Switch } from 'react-router-dom';
+import { Route, BrowserRouter } from 'react-router-dom';
 
 import './App.css';
 import {connect} from 'react-redux';
@@ -28,7 +28,6 @@ function App() {
         <ThemeProvider theme={theme}>
           {/* <UIView /> */}
           <BrowserRouter>
-            <Switch>
               <Route exact path="/" component={Login} />
               <Route path="/home/" component={Navbar} />
               <Route path="/home/" component={Sidebar} />
@@ -36,7 +35,6 @@ function App() {
               <Route exact path="/home/tools" component={Tools} />
               <Route exact path="/home/customers" component={Customers} />
               <Route exact path="/home/orders" component={Orders} />
-            </Switch>
           </BrowserRouter>
         </ThemeProvider>
       </CssBaseline>
