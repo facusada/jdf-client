@@ -133,8 +133,9 @@ function Customers({ getClient, all_client, deleteClient, updateClient, insertCl
 
    
   // pagination
+  const pages = [5, 10, 25]
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [rowsPerPage, setRowsPerPage] = React.useState(pages[page]);
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -414,7 +415,7 @@ function Customers({ getClient, all_client, deleteClient, updateClient, insertCl
          )) :
          
          all_client
-        .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+        .slice(page * rowsPerPage, (page+1) * rowsPerPage)
         .map((row, index) => (
           <TableRow key={row.name}>
              <TableCell component="th" scope="row">
@@ -445,7 +446,7 @@ function Customers({ getClient, all_client, deleteClient, updateClient, insertCl
      </Table>
    </TableContainer>
    <TablePagination
-     rowsPerPageOptions={[5, 10, 25]}
+     rowsPerPageOptions={pages}
      component="div"
      count={all_client.length}
      rowsPerPage={rowsPerPage}

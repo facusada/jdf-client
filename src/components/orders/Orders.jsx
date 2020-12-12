@@ -24,6 +24,8 @@ import 'moment/locale/es';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
+import CloseIcon from '@material-ui/icons/Close';
+
 import { connect } from 'react-redux';
 import moment from "moment";
 import 'moment/locale/es';
@@ -41,11 +43,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import InputLabel from '@material-ui/core/InputLabel';
 import { useHistory } from 'react-router-dom';
 
 
@@ -181,6 +179,32 @@ const handleDelete = function(id){
       Swal.fire(
         'Eliminada!',
         'La orden ha sido borrada.',
+        'success'
+      )
+    }
+  })
+}
+
+const handleCancel = function(id){
+  let body = {
+    status: false,
+    id: id,
+  }
+  Swal.fire({
+    title: 'Quieres terminar esta orden?',
+    text: "No vas a poder revertir esto!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Confirmar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      updateOrder(body).then(value =>  allOrder())
+      setOpen(false)
+      Swal.fire(
+        'Terminada!',
+        'La orden ha sido cerrada.',
         'success'
       )
     }
@@ -482,11 +506,14 @@ const handleSubmit = function(e){
             
             
             <TableCell align="center">
-            <IconButton aria-label="edit" onClick={()=>handleOpen(row)}>
+            <IconButton aria-label="edit" onClick={()=>handleOpen(row)} disabled={row.status === false ? true : false}>
               <EditIcon />
             </IconButton>
             <IconButton aria-label="delete" onClick={()=>handleDelete(row.id)} >
               <DeleteIcon />
+            </IconButton>
+            <IconButton aria-label="cancel" onClick={()=>handleCancel(row.id)} disabled={row.status === false ? true : false}>
+              <CloseIcon/>
             </IconButton>
             </TableCell>
           </TableRow>
@@ -535,12 +562,16 @@ const handleSubmit = function(e){
             
               
             <TableCell align="center">
-            <IconButton aria-label="edit" onClick={()=>handleOpen(row)}>
-              <EditIcon />
+            <IconButton aria-label="edit" onClick={()=>handleOpen(row)} disabled={row.status === false ? true : false}>
+            <EditIcon />
             </IconButton>
             <IconButton aria-label="delete"  onClick={()=>handleDelete(row.id)} >
-              <DeleteIcon />
+            <DeleteIcon />
             </IconButton>
+            <IconButton aria-label="cancel" onClick=
+            {()=>handleCancel(row.id)} disabled={row.status === false ? true : false}>
+              <CloseIcon/>
+              </IconButton>
             </TableCell>
           </TableRow>
         )) : "No se han encontrado herramientas alquiladas."}
