@@ -1,10 +1,9 @@
 import React from 'react';
-import { Route, BrowserRouter } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import './App.css';
 import {connect} from 'react-redux';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import { CssBaseline } from '@material-ui/core';
+import { createMuiTheme } from '@material-ui/core/styles';
 import { esES } from '@material-ui/core/locale';
 import Login from './components/users/Login';
 import Tools from './components/tools/Tools';
@@ -24,10 +23,7 @@ function App() {
     }, esES);
 
   return (
-      <CssBaseline>
-        <ThemeProvider theme={theme}>
-          {/* <UIView /> */}
-          <BrowserRouter>
+    <div>
               <Route exact path="/" component={Login} />
               <Route path="/home/" component={Navbar} />
               <Route path="/home/" component={Sidebar} />
@@ -35,9 +31,7 @@ function App() {
               <Route exact path="/home/tools" component={Tools} />
               <Route exact path="/home/customers" component={Customers} />
               <Route exact path="/home/orders" component={Orders} />
-          </BrowserRouter>
-        </ThemeProvider>
-      </CssBaseline>
+    </div>
   );
 }
 
