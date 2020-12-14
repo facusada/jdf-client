@@ -47,9 +47,9 @@ function ListItemLink(props) {
 function Header({ loginUserCookie, users, userLogout }) {
   const history = useHistory();
 
-  /* useEffect(() => {
+  useEffect(() => {
     loginUserCookie();
-  }, []); */
+  }, []);
 
   if (users == 0) {
     Swal.fire({
