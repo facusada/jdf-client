@@ -93,7 +93,7 @@ function Header({ loginUserCookie, users, userLogout }) {
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire("Ok!");
-        window.location.replace("http://localhost:3000");
+        history.push("/");
       }
     });
   }
