@@ -71,9 +71,9 @@ function SignInSide({ login, date_user, logintrue, loginUserCookie, cargardb }) 
   const history = useHistory();
   const [ userLog, setUserLog ] = useState({ username: "", password: "" })
 
-  useEffect(() => {
+/*   useEffect(() => {
     loginUserCookie()
-  }, [])
+  }, []) */
 
   if(typeof date_user == "object"){
     history.push('/home')
