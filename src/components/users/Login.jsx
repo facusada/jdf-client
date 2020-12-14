@@ -66,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function SignInSide({ login, date_user,logintrue, loginUserCookie,cargardb }) {
+function SignInSide({ login, date_user, logintrue, loginUserCookie, cargardb }) {
   const classes = useStyles();
   const history = useHistory();
   const [ userLog, setUserLog ] = useState({ username: "", password: "" })

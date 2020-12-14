@@ -24,13 +24,13 @@ function App() {
 
   return (
     <div>
-              <Route exact path="/" component={Login} />
-              <Route path="/home/" component={Navbar} />
-              <Route path="/home/" component={Sidebar} />
-              <Route exact path="/home" component={Home} /> 
-              <Route exact path="/home/tools" component={Tools} />
-              <Route exact path="/home/customers" component={Customers} />
-              <Route exact path="/home/orders" component={Orders} />
+      <Route exact path="/" component={Login} />
+      <Route path="/home/" component={Navbar} />
+      <Route path="/home/" component={Sidebar} />
+      <Route exact path="/home" component={Home} /> 
+      <Route exact path="/home/tools" component={Tools} />
+      <Route exact path="/home/customers" component={Customers} />
+      <Route exact path="/home/orders" component={Orders} />
     </div>
   );
 }
