@@ -47,11 +47,11 @@ function ListItemLink(props) {
 function Header({ loginUserCookie, users, userLogout }) {
   const history = useHistory();
 
-  useEffect(() => {
+/*   useEffect(() => {
     loginUserCookie();
-  }, []);
+  }, []); */
 
-  if (users == 0) {
+  if (users === 0) {
     Swal.fire({
       icon: "error",
       title: "Error! Debes iniciar sesion para acceder!",
