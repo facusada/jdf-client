@@ -51,14 +51,14 @@ function Header({ loginUserCookie, users, userLogout }) {
     loginUserCookie();
   }, []); */
 
-  if (users === 0) {
+  /* if (users === 0) {
     Swal.fire({
       icon: "error",
       title: "Error! Debes iniciar sesion para acceder!",
       showConfirmButton: true,
     });
     history.push("/");
-  }
+  } */
 
   const classes = useStyles();
   // menu user login
