@@ -92,8 +92,8 @@ function Header({ loginUserCookie, users, userLogout }) {
       confirmButtonText: "Si",
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire("Ok!");
-        history.push("/");
+        Swal.fire("Hasta luego!");
+        history.push("https://jdf-client.herokuapp.com/");
       }
     });
   }
